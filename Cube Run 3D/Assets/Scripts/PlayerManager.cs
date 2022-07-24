@@ -9,11 +9,15 @@ public class PlayerManager : MonoBehaviour
 {
     public Leaderboard leaderboard;
     public InputField playernameInput;
+    public GameObject SetNameFirstUI;
 
     void Start()
     {
         StartCoroutine(LoginRoutine());
         StartCoroutine(SetupRoutine());
+        if (PlayerPrefs.GetString("PlayerName", "") == ""){
+            StartCoroutine(FirstSetName());
+        }
     }
 
     public void SetPlayerName(){
@@ -29,6 +33,15 @@ public class PlayerManager : MonoBehaviour
                 Debug.Log("Set Name error: " + response.Error);
             }
         });
+        }
+    }
+
+    IEnumerator FirstSetName(){
+        yield return new WaitForSeconds(3f);
+
+        if (PlayerPrefs.GetString("NameSet", "false") != "true"){
+            SetNameFirstUI.SetActive(true);
+            PlayerPrefs.SetString("NameSet", "true");
         }
     }
 
