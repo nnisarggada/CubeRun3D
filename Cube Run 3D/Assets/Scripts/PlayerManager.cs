@@ -10,12 +10,13 @@ public class PlayerManager : MonoBehaviour
     public Leaderboard leaderboard;
     public InputField playernameInput;
     public GameObject SetNameFirstUI;
+    public GameObject ErrorUI;
 
     void Start()
     {
         StartCoroutine(LoginRoutine());
         StartCoroutine(SetupRoutine());
-        if (PlayerPrefs.GetString("PlayerName", "") == ""){
+        if (PlayerPrefs.GetString("NameSet", "") == ""){
             StartCoroutine(FirstSetName());
         }
     }
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
             if(response.success){
                 Debug.Log("Succesfully set name");
                 PlayerPrefs.SetString("PlayerName", playernameInput.text);
+                PlayerPrefs.SetString("NameSet", "true");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else {
@@ -39,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     IEnumerator FirstSetName(){
         yield return new WaitForSeconds(3f);
 
-        if (PlayerPrefs.GetString("NameSet", "false") != "true"){
+        if (PlayerPrefs.GetString("NameSet", "") == ""){
             SetNameFirstUI.SetActive(true);
             PlayerPrefs.SetString("NameSet", "true");
         }
@@ -64,10 +66,20 @@ public class PlayerManager : MonoBehaviour
                 done = true;
             }
             else {
+                StartCoroutine(Error());
                 Debug.Log("Player not Logged In");
                 done = true;
             }
         });
         yield return new WaitWhile(()=> done == false);
+    }
+
+    IEnumerator Error(){
+
+        yield return new WaitForSeconds(2f);
+        ErrorUI.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Menu");
     }
 }

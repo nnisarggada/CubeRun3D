@@ -4782,8 +4782,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 549129908192031270, guid: 03993dc3a457c924b9f563b899926227, type: 3}
+      propertyPath: m_Mass
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 549129908192031270, guid: 03993dc3a457c924b9f563b899926227, type: 3}
       propertyPath: m_UseGravity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 549129908192031270, guid: 03993dc3a457c924b9f563b899926227, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 549129908192031271, guid: 03993dc3a457c924b9f563b899926227, type: 3}
       propertyPath: m_Enabled
@@ -4837,6 +4845,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 549129908192031275, guid: 03993dc3a457c924b9f563b899926227, type: 3}
+      propertyPath: incrementSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 549129908192031276, guid: 03993dc3a457c924b9f563b899926227, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 986728533}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03993dc3a457c924b9f563b899926227, type: 3}
 --- !u!114 &549129906662469889 stripped
@@ -5076,3 +5092,4 @@ MonoBehaviour:
   playerNames: []
   playerScores: []
   playernameInput: {fileID: 0}
+  ErrorUI: {fileID: 0}

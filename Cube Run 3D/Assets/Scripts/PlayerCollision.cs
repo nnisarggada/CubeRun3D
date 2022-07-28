@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
 	public PlayerMovement movement;
+	public Rigidbody rb;
 
     void OnCollisionEnter (Collision collisonInfo)
 	{
 		if (collisonInfo.collider.tag == "Obstacle" && this.gameObject.tag == "Player")
 		{
+			rb.constraints = RigidbodyConstraints.None;
 			movement.enabled = false;
 			Time.timeScale = 0.5f;
 			Handheld.Vibrate();

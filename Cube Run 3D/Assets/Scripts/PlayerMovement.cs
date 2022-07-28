@@ -1,23 +1,34 @@
+using System.IO.Compression;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
-    public float forwardForce = 2000f;
+    public float forwardForce = 4000f;
     public float sidewaysForce = 500f;
-    public int fall;
+
+    public float incrementSpeed = 0.1f;
+    private int fall;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        forwardForce = 4000f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+        rb.AddForce(0, 0, (forwardForce + incrementSpeed)* Time.deltaTime);
+        forwardForce += incrementSpeed;
+
+        if(Mathf.Abs(rb.position.x) > 7.5){
+            rb.constraints = RigidbodyConstraints.None;
+        }
+        else {
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        }
 
         if (Input.touchCount > 0)
         {

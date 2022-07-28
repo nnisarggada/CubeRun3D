@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using LootLocker.Requests;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Leaderboard : MonoBehaviour
 {
     public int ID;
     public Text[] playerNames;
     public Text[] playerScores;
-
     public InputField playernameInput;
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class Leaderboard : MonoBehaviour
         }
         LootLockerSDKManager.GetScoreList(ID, 10, 0, (response)=>{
             if (response.success){
-
+                
                 LootLockerLeaderboardMember[] members = response.items;
 
                 for (int i = 0; i < members.Length; i++){

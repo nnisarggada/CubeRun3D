@@ -21,13 +21,13 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetString("NameSet") != "true"){
+        if (PlayerPrefs.GetString("NameSet", "") == "" && PlayerPrefs.GetString("PlayerName", "") == ""){
             button1.SetActive(false);
             button2.SetActive(false);
         }
         else{
             button1.SetActive(true);
-            button2.SetActive(true);
+            button2.SetActive(true);    
         }
         score = Mathf.RoundToInt(player.position.z);
         coins = (score-(score%100))/100;
@@ -56,7 +56,7 @@ public class GameOver : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         FindObjectOfType<AudioManager>().Play("Highscore");
         yield return new WaitForSeconds(2f);
-        if (PlayerPrefs.GetString("NameSet") != "true"){
+        if (PlayerPrefs.GetString("NameSet") == ""){
             SceneManager.LoadScene("Leaderboard");
         }
     }
