@@ -22,14 +22,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.AddForce(0, 0, (forwardForce + incrementSpeed)* Time.deltaTime);
         forwardForce += incrementSpeed;
-
-        if(Mathf.Abs(rb.position.x) > 7.5){
-            rb.constraints = RigidbodyConstraints.None;
-        }
-        else {
-            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-        }
-
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);

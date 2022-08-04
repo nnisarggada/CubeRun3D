@@ -19,7 +19,14 @@ public class TileManager : MonoBehaviour
 		{
             if (i == 0)
 			{
-                SpawnTile(0);
+                if (tilePrefabs[0].name != "Tile0"){
+                    GameObject go = Instantiate(tilePrefabs[0], transform.forward * 90, transform.rotation);
+                    activeTiles.Add(go);
+                    zSpawn += tileLength;
+                }
+                else {
+                    SpawnTile(0);
+                }
 			}
             else
 			{

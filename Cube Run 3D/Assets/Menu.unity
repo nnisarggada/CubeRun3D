@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b222721384384924bbf319b895109b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentVersion: 4.3
+  currentVersion: 4.6
   UpdateUI: {fileID: 1997212236}
 --- !u!1 &513964487
 GameObject:
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 4335074727622341630}
-  rb: {fileID: 0}
+  rb: {fileID: 4335074727622341619}
 --- !u!33 &4335074727622341628
 MeshFilter:
   m_ObjectHideFlags: 0

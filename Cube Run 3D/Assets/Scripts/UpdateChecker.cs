@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class UpdateChecker : MonoBehaviour
@@ -11,21 +12,21 @@ public class UpdateChecker : MonoBehaviour
 
     IEnumerator Start(){
 
-        WWW LastestVersion = new WWW ("http://nnisarg.xyz/CubeRun3D/LatestVersion.txt");
-        yield return LastestVersion;
-        String update = LastestVersion.text;
+        UnityWebRequest LastestVersion = UnityWebRequest.Get("http://nnisarg.xyz/CubeRun3D/LatestVersion.txt");
+        yield return LastestVersion.SendWebRequest();
+        String update = LastestVersion.downloadHandler.text;
 
-        if (update == ""){
+        if (LastestVersion.error != null){
             UpdateUI.SetActive(false);
         }
-
-        if(update != Convert.ToString(currentVersion)){
+        else {
+            if(update != Convert.ToString(currentVersion)){
             if (!Boot.UpdateUIShown){
                 Boot.UpdateUIShown = true;
                 UpdateUI.SetActive(true);
+                }
             }
         }
-
     }
 
     public void Okay(){
